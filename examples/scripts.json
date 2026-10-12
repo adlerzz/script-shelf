@@ -1,0 +1,23 @@
+{
+  "format": "script-shelf",
+  "version": 1,
+  "items": [
+    { "id": "examples", "kind": "folder", "parentId": null, "name": "Примеры", "icon": "🧰" },
+    {
+      "id": "title",
+      "kind": "script",
+      "parentId": "examples",
+      "name": "Заголовок страницы",
+      "icon": "🏷️",
+      "code": "return document.title;"
+    },
+    {
+      "id": "links",
+      "kind": "script",
+      "parentId": "examples",
+      "name": "Все ссылки",
+      "icon": "🔗",
+      "code": "const links = [...document.querySelectorAll('a')].map(a => ({text: a.textContent, href: a.href}));\nconsole.table(links);\nreturn `Найдено ссылок: ${links.length}`;"
+    }
+  ]
+}

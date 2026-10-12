@@ -1,0 +1,90 @@
+/* Shared theme and base controls. Component styles live in .svelte files. */
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    color-scheme: dark;
+    --bg: #11151c;
+    --panel: #191f29;
+    --line: #2b3443;
+    --text: #e9edf5;
+    --muted: #9daabe;
+    --accent: #b1f176;
+    --danger: #ff9292;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 14px/1.5 system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+button, input, select, textarea {
+    font: inherit;
+}
+
+button {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #232c3a;
+    color: var(--text);
+    padding: 8px 13px;
+    cursor: pointer;
+    white-space: nowrap;
+
+    &:hover {
+        background: #303d50;
+    }
+
+    &:disabled {
+        opacity: 0.45;
+        cursor: default;
+    }
+}
+
+button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #15230b;
+    font-weight: 650;
+
+    &:hover {
+        background: #c5ff91;
+    }
+}
+
+.danger {
+    color: var(--danger);
+}
+
+input, select {
+    width: 100%;
+    min-width: 0;
+    border: 1px solid var(--line);
+    background: #111720;
+    color: var(--text);
+    border-radius: 8px;
+    padding: 10px 12px;
+}
+
+input[type='search'] {
+    background: #1c2430;
+}
+
+h2 {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0;
+}
+
+[hidden] {
+    display: none !important;
+}

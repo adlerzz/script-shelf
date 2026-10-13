@@ -96,24 +96,30 @@ return await response.json();
 
 ## Структура
 
-- `src/model.ts`: модели элементов, дерево, JSON-валидация и импорт/экспорт.
-- `src/types.ts`: именованные литеральные типы для видов элементов, команд, режимов и формата.
-- `src/guards.ts`: проверки примитивов, сужение моделей и проверка входных сообщений/результатов.
-- `src/constants/values.ts`: значения дискриминаторов, лимиты и параметры выполнения; `symbols.ts` — символы интерфейса.
-- `src/background.ts`: сообщения, сериализация операций записи, контроль ревизий.
-- `src/runner.ts`: запуск пользовательского кода.
-- `src/Popup.svelte`: popup и запуск на вкладке.
-- `src/Manager.svelte`: управление полкой, черновик, импорт/экспорт.
+- `src/models/item.model.ts`: модели папок и скриптов, виды элементов и их тайпгарды, валидация элементов и иконок.
+- `src/models/common.model.ts`: модели библиотеки и файла экспорта, типы формата и параметров выполнения, импорт/экспорт JSON, объединение, поиск потомков и порядок элементов.
+- `src/models/mode.model.ts`: режимы дерева и их тайпгарды.
+- `src/models/request.model.ts`: команды расширения, модели запросов и их тайпгарды, проверка ревизии.
+- `src/models/response.model.ts`: модели успешного и ошибочного ответа, тайпгард успешного ответа.
+- `src/guards.ts`: общие тайпгарды примитивов, объектов, DOM-элементов и результатов выполнения.
+- `src/constants/values.ts`: лимиты, идентификаторы формата и хранилища, параметры выполнения и редактора.
+- `src/constants/symbols.ts`: символы интерфейса.
+- `src/api.ts`: отправка запросов из UI, загрузка и сохранение библиотеки.
+- `src/background.ts`: обработка сообщений, хранение, сериализация операций записи и контроль ревизий.
+- `src/runner.ts`: подготовка и запуск пользовательского кода на вкладке.
+- `src/pages/Popup.svelte`: popup и запуск на активной вкладке.
+- `src/pages/Manager.svelte`: управление полкой, черновик и импорт/экспорт.
+- `src/pages/popup.ts`, `src/pages/manager.ts`: точки входа страниц и монтирование Svelte-компонентов.
 - `src/components/ItemTree.svelte`: общее дерево и поиск.
-- `src/components/ScriptEditor.svelte`: поля и редактор скрипта.
+- `src/components/ScriptEditor.svelte`: поля и действия редактора скриптов и папок.
 - `src/components/CodeEditor.svelte`: интеграция CodeFlask, синхронизация кода и тема подсветки.
+- `src/components/ItemIcon.svelte`: отображение текстовой иконки или изображения.
+- `src/components/AppHeader.svelte`, `src/components/StatusBar.svelte`: общая шапка и сообщения состояния.
 - `src/vendor/codeflask.d.ts`: декларация используемого API CodeFlask.
-- `src/components/ItemIcon.svelte`: отображение эмодзи/изображения.
-- `src/components/AppHeader.svelte`, `StatusBar.svelte`: общая шапка и сообщения состояния.
-- `src/popup.ts`, `src/manager.ts`: точки входа и `mount`.
-- `src/ui.ts`: небольшие вспомогательные функции без ручного рендеринга.
-- `svelte.config.mjs`, `rollup.config.mjs`, `eslint.config.mjs`: конфигурация UI и сборки.
-- `public/`: manifest и статические ресурсы.
-- `tests/`: проверки дерева, импорта, исполнения и хранения.
+- `src/ui.ts`: путь папки, сообщения ошибок, скачивание JSON и чтение иконок.
+- `svelte.config.mjs`, `rollup.config.mjs`, `eslint.config.mjs`, `tsconfig.json`: конфигурация Svelte, сборки, линтера и TypeScript.
+- `public/`: manifest, HTML страниц, общие стили и иконки расширения; ресурсы копируются в `dist` при сборке.
+- `tests/`: проверки модели, импорта/экспорта, исполнения, хранения и браузерная регрессия UI.
+- `examples/`: примеры скриптов для импорта.
 
 Документация API: https://developer.chrome.com/docs/extensions/reference/api/userScripts

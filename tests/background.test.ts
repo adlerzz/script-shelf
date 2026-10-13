@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import type { Request, Response } from "../src/api";
+import { Request } from "../src/models/request.model";
+import { Response } from "../src/models/response.model";
 
 test("background serializes writes, prevents lost updates, and rejects web senders", async () => {
     let listener: (

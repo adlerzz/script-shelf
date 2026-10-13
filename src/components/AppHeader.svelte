@@ -5,7 +5,9 @@
 </script>
 
 <header class:compact>
-    <div class="brand">ϟ</div>
+    <div class="brand">
+        <div class="image"></div>
+    </div>
     <div>
         <h1>Script Shelf</h1>
         <p>{subtitle}</p>
@@ -19,7 +21,7 @@
         gap: 14px;
         align-items: center;
         border-bottom: 1px solid var(--line);
-        padding: 22px 28px;
+        padding: 16px 28px;
 
         & p {
             margin: 2px 0 0;
@@ -28,7 +30,7 @@
         }
 
         &.compact {
-            padding: 16px;
+            padding: 8px 16px;
             gap: 10px;
         }
 
@@ -76,11 +78,15 @@
         place-items: center;
         border-radius: 12px;
         background: var(--accent);
-        color: #172a09;
         width: 42px;
         height: 42px;
-        font-size: 34px;
-        font-weight: 700;
+
+        .image{
+            width: 100%;
+            height: 100%;
+            background-image: url("./icons/48.png");
+            background-size: contain;
+        }
     }
 
     .header-actions {

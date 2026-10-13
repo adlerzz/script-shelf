@@ -1,15 +1,16 @@
 <script lang="ts">
-    import { isStorageArea } from "./guards";
-    import { REQUEST_TYPE, TREE_MODE } from "./constants/values";
-
     import { onMount } from "svelte";
-    import { load, request } from "./api";
-    import { emptyLibrary, type Item } from "./model";
-    import { errorMessage } from "./ui";
-    import ItemTree from "./components/ItemTree.svelte";
-    import AppHeader from "./components/AppHeader.svelte";
-    import StatusBar from "./components/StatusBar.svelte";
-    import { SYMBOLS } from "./constants/symbols";
+    import { load, request } from "../api";
+    import { emptyLibrary } from "../models/common.model";
+    import { errorMessage } from "../ui";
+    import ItemTree from "../components/ItemTree.svelte";
+    import AppHeader from "../components/AppHeader.svelte";
+    import StatusBar from "../components/StatusBar.svelte";
+    import { SYMBOLS } from "../constants/symbols";
+    import { isStorageArea } from "../constants/values";
+    import { REQUEST_TYPE } from "../models/request.model";
+    import { type Item } from "../models/item.model";
+    import { TREE_MODE } from "../models/mode.model";
 
     let library = $state.raw(emptyLibrary());
     let query = $state("");
@@ -79,19 +80,23 @@
 <StatusBar {message} {failed} compact />
 
 <style>
+    :root {
+        --item-height: 32px;
+    }
+
     :global(body.popup) {
-        width: 410px;
+        width: 420px;
         min-height: 240px;
     }
 
     main {
-        padding: 14px;
+        padding: 0 12px;
     }
 
     .target {
         font-size: 11px;
         color: var(--muted);
-        padding: 10px 2px;
+        padding: 6px 2px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -100,5 +105,10 @@
     .popup-list {
         max-height: 380px;
         overflow: auto;
+    }
+
+    input#search {
+        margin-top: 12px;
+        padding: 4px 12px;
     }
 </style>

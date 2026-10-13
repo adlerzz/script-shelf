@@ -1,5 +1,6 @@
 import { EXECUTION_WORLD, MAX_RESULT_LENGTH, TOP_FRAME_ID } from "./constants/values";
-import { isExecutionResult, isString } from "./guards";
+import { isRecord, isString } from "./guards";
+import { ExecutionResult } from "./models/common.model";
 
 // Source is supplied as userScripts code, never evaluated in an extension page.
 // An async function gives snippets top-level await/return and a fresh lexical scope per run.
@@ -66,4 +67,8 @@ export async function runCode (code: string, tabId: number): Promise<string> {
         throw new Error(result.error);
     }
     return result.result;
+}
+
+function isExecutionResult (value: unknown): value is ExecutionResult {
+    return isRecord(value) && (value.ok === true ? isString(value.result) : value.ok === false && isString(value.error));
 }

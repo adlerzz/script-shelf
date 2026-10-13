@@ -1,7 +1,6 @@
 <script lang="ts">
-    import { isFolder } from "../guards";
     import { SYMBOLS } from "../constants/symbols";
-    import type { Item } from "../model";
+    import { isFolder, type Item } from "../models/item.model";
 
     let { item }: { item: Item } = $props();
 </script>
@@ -22,7 +21,7 @@
         width: 25px;
         height: 25px;
         flex-shrink: 0;
-        font-size: 20px;
+        font-size: 12px;
         overflow: hidden;
 
         & img {

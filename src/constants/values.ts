@@ -5,11 +5,9 @@ export const STORAGE_KEY = "scriptShelf";
 export const STORAGE_AREA = "local";
 export const EXECUTION_WORLD = "MAIN";
 
-export const ITEM_KIND = { FOLDER: "folder", SCRIPT: "script" } as const;
-export const REQUEST_TYPE = { LOAD: "load", SAVE: "save", RUN: "run" } as const;
-export const TREE_MODE = { MANAGE: "manage", RUN: "run" } as const;
-export const MOVE_DIRECTION = { UP: -1, DOWN: 1 } as const;
-export const IMAGE_MIME_TYPES = ["image/png", "image/jpeg", "image/webp", "image/gif"] as const;
+export function isStorageArea (value: unknown): value is typeof STORAGE_AREA {
+    return value === STORAGE_AREA;
+}
 
 // Data limits and runtime behavior. CSS dimensions remain in the stylesheets.
 const BYTES_PER_KIB = 1024;

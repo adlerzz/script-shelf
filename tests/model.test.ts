@@ -6,11 +6,9 @@ import {
     exportJSON,
     mergeItems,
     parseImport,
-    reorder,
-    validateIcon,
-    validateItems,
-    type Item,
-} from "../src/model";
+    reorder
+} from "../src/models/common.model";
+import { type Item, validateIcon, validateItems } from "../src/models/item.model";
 const items: Item[] = [
     { id: "f", kind: "folder", parentId: null, name: "Folder", icon: "📁" },
     { id: "g", kind: "folder", parentId: "f", name: "Nested", icon: "" },

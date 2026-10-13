@@ -1,12 +1,12 @@
 <script lang="ts">
-    import { isFolder, isScript, isInputElement } from "../guards";
-    import { MOVE_DIRECTION, MAX_NAME_LENGTH, MAX_ICON_TEXT_LENGTH } from "../constants/values";
-    import type { MoveDirection } from "../types";
-    import type { Item } from "../model";
-    import { descendants } from "../model";
+    import { isInputElement } from "../guards";
+    import { MAX_NAME_LENGTH, MAX_ICON_TEXT_LENGTH } from "../constants/values";
+    import type { MoveDirection } from "../models/common.model";
+    import { descendants, MOVE_DIRECTION } from "../models/common.model";
     import { folderPath } from "../ui";
     import ItemIcon from "./ItemIcon.svelte";
     import CodeEditor from "./CodeEditor.svelte";
+    import { isFolder, isScript, type Item } from "../models/item.model";
 
     interface Props {
         draft: Item;
@@ -123,7 +123,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 26px;
+        margin-bottom: 16px;
     }
 
     .badge {
@@ -142,8 +142,8 @@
     .fields {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 18px;
-        margin-bottom: 25px;
+        gap: 16px;
+        margin-bottom: 16px;
 
         & > .icon-field {
             grid-column: 1/-1;
@@ -228,7 +228,7 @@
     .hint {
         font-size: 12px;
         color: var(--muted);
-        margin: 10px 0 22px;
+        margin: 8px 0 12px;
     }
 
     .editor-actions {

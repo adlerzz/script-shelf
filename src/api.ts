@@ -1,32 +1,7 @@
-import type { Library, Item } from "./model";
-import { REQUEST_TYPE } from "./constants/values";
-import { isSuccessResponse } from "./guards";
-import type { LoadRequestType, SaveRequestType, RunRequestType } from "./types";
-
-export interface LoadRequest {
-    type: LoadRequestType;
-}
-export interface SaveRequest {
-    type: SaveRequestType;
-    revision: number;
-    items: Item[];
-}
-export interface RunRequest {
-    type: RunRequestType;
-    id: string;
-    tabId: number;
-}
-export type Request = LoadRequest | SaveRequest | RunRequest;
-export interface SuccessResponse {
-    ok: true;
-    library?: Library;
-    result?: string;
-}
-export interface FailureResponse {
-    ok: false;
-    error: string;
-}
-export type Response = SuccessResponse | FailureResponse;
+import { type Item } from "./models/item.model";
+import { type Library } from "./models/common.model";
+import { Request, REQUEST_TYPE } from "./models/request.model";
+import { Response, isSuccessResponse, SuccessResponse } from "./models/response.model";
 
 export async function request (message: Request): Promise<SuccessResponse> {
     const response: Response = await chrome.runtime.sendMessage(message);

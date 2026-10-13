@@ -1,9 +1,12 @@
-import { emptyLibrary, exportJSON, MAX_FILE_BYTES, validateItems, type Library } from "./model";
+import { emptyLibrary, exportJSON, isFormatVersion,  MAX_FILE_BYTES, type Library } from "./models/common.model";
 import { runCode } from "./runner";
-import type { Request, Response } from "./api";
 import { FORMAT_VERSION, STORAGE_KEY } from "./constants/values";
-import { isRequest, isFormatVersion, isLoadRequest, isRunRequest, isSaveRequest, isRevision, isRecord, isScript, isInteger } from "./guards";
 import { errorMessage } from "./ui";
+import { isInteger, isRecord } from "./guards";
+import { isScript, validateItems } from "./models/item.model";
+import { Request, isLoadRequest, isRequest, isRevision, isRunRequest, isSaveRequest } from "./models/request.model";
+import { Response } from "./models/response.model";
+
 let queue: Promise<unknown> = Promise.resolve();
 
 async function read (): Promise<Library> {

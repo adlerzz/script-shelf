@@ -1,16 +1,16 @@
 <script lang="ts">
-    import { isFolder, isScript, isFolderKind, isStorageArea } from "./guards";
-    import { ITEM_KIND, COPY_NAME_MAX_LENGTH, COPY_NAME_SUFFIX } from "./constants/values";
-    import type { ItemKind, MoveDirection } from "./types";
+
+    import { COPY_NAME_MAX_LENGTH, COPY_NAME_SUFFIX, isStorageArea } from "../constants/values";
     import { onMount } from "svelte";
-    import { load, save } from "./api";
-    import { descendants, emptyLibrary, MAX_FILE_BYTES, mergeItems, parseImport, reorder, type Item } from "./model";
-    import { downloadJSON, errorMessage, readIcon } from "./ui";
-    import ItemTree from "./components/ItemTree.svelte";
-    import AppHeader from "./components/AppHeader.svelte";
-    import StatusBar from "./components/StatusBar.svelte";
-    import ScriptEditor from "./components/ScriptEditor.svelte";
-    import { SYMBOLS } from "./constants/symbols";
+    import { load, save } from "../api";
+    import { descendants, emptyLibrary, MAX_FILE_BYTES, mergeItems, type MoveDirection, parseImport, reorder } from "../models/common.model";
+    import { downloadJSON, errorMessage, readIcon } from "../ui";
+    import ItemTree from "../components/ItemTree.svelte";
+    import AppHeader from "../components/AppHeader.svelte";
+    import StatusBar from "../components/StatusBar.svelte";
+    import ScriptEditor from "../components/ScriptEditor.svelte";
+    import { SYMBOLS } from "../constants/symbols";
+    import { isFolder, isFolderKind, isScript, type Item, ITEM_KIND, type ItemKind } from "../models/item.model";
 
     let library = $state.raw(emptyLibrary());
     let selected = $state<string | null>(null);
@@ -283,10 +283,16 @@
 </dialog>
 
 <style>
+
+    :root {
+        --item-height: 42px;
+    }
+
     .workspace {
         display: grid;
         grid-template-columns: 290px minmax(0, 1fr);
         min-height: calc(100vh - 143px);
+        flex-grow: 1;
 
         @media (max-width: 800px) {
             grid-template-columns: 230px minmax(0, 1fr);
@@ -337,11 +343,12 @@
     }
 
     .editor {
-        padding: 30px 40px;
+        padding: 20px 40px;
         min-width: 0;
         max-width: 1200px;
         width: 100%;
         margin: 0 auto;
+        overflow: clip auto;
 
         @media (max-width: 800px) {
             padding: 24px 20px;

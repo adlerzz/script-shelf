@@ -1,12 +1,11 @@
 <script lang="ts">
-    import { isFolder, isScript, isManageMode, isRunMode } from "../guards";
-    import { TREE_MODE, TREE_INDENT_PX, TREE_MANAGE_PADDING_PX, TREE_RUN_PADDING_PX } from "../constants/values";
-    import type { TreeMode } from "../types";
+    import { TREE_INDENT_PX, TREE_MANAGE_PADDING_PX, TREE_RUN_PADDING_PX } from "../constants/values";
     import { SvelteSet } from "svelte/reactivity";
-    import type { Item } from "../model";
+    import { isManageMode, isRunMode, TREE_MODE, type TreeMode } from "../models/mode.model";
     import { folderPath } from "../ui";
     import ItemIcon from "./ItemIcon.svelte";
     import { SYMBOLS } from "../constants/symbols";
+    import { isFolder, isScript, type Item } from "../models/item.model";
 
     interface Props {
         items: Item[];
@@ -132,7 +131,7 @@
     .tree-row {
         display: flex;
         align-items: center;
-        min-height: 42px;
+        min-height: var(--item-height);
         border-radius: 8px;
         margin: 2px 0;
 
@@ -155,7 +154,7 @@
         min-width: 0;
         border: 0;
         background: transparent;
-        padding: 8px;
+        padding: 2px;
 
         &:hover {
             background: transparent;

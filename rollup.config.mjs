@@ -5,7 +5,7 @@ import svelteConfig from "./svelte.config.mjs";
 import { cp, mkdir, rm } from "node:fs/promises";
 
 export default {
-    input: { background: "src/background.ts", popup: "src/popup.ts", manager: "src/manager.ts" },
+    input: { background: "src/background.ts", popup: "src/pages/popup.ts", manager: "src/pages/manager.ts" },
     output: {
         dir: "dist", format: "es", sourcemap: false,
         entryFileNames: "[name].js", chunkFileNames: "chunks/[name]-[hash].js",

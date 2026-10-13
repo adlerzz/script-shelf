@@ -1,6 +1,7 @@
-import { exportJSON, validateIcon, type Item } from "./model";
+import { exportJSON, isImageMimeType } from "./models/common.model";
 import { ISO_DATE_LENGTH, MAX_ICON_FILE_BYTES, OBJECT_URL_REVOKE_DELAY_MS } from "./constants/values";
-import { isError, isImageMimeType } from "./guards";
+import { isError } from "./guards";
+import { type Item, validateIcon } from "./models/item.model";
 
 export function folderPath (items: Item[], id: string | null): string {
     const parts: string[] = [];
